@@ -1,0 +1,36 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="app-title">
+    <h1>Hello {{username}}!</h1>
+</div>
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+    <div>
+        {% for message in messages %}
+        <p> <strong> {{ message }} </strong> </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+</div>
+<form action="{{ url_for('upload_file',user_id = user_id)}}" method=post enctype=multipart/form-data>
+    <div class="center">
+        <label for="file-upload" class="btn btn-primary">
+            <i class="fa fa-cloud-upload"></i> Upload New Image
+        </label>
+        <input id="file-upload" type="file" name="file" accept="image/*" onchange="this.form.submit();">
+    </div>
+</form>
+{% for i in items %}
+<div class="container">
+    <div>
+        <a href = "{{url_for('photo_detail',user_id=i.user_id, photo_id=i.id)}}">
+            <img src="{{ i.thumbnail }}" alt="Smiley face" height="200px" width="auto">
+        </a>
+    </div>
+    <a href = "{{url_for('photo_delete',user_id=i.user_id, photo_id=i.id)}}">Delete</a>
+</div>
+{% endfor %}
+{% endblock %}

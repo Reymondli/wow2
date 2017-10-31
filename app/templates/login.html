@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>
+        User Log In
+    </title>
+    <link rel="stylesheet" href="/static/style.css" type="text/css">
+</head>
+<body>
+{% block body %}
+{% if login_session['logged_in'] %}
+<p>You're logged in as "{{login_session['username']}}"</p>
+<form action="/logout" method="get">
+	<div class="center">
+        <input type="submit" value="Logout" class="btn btn-warning btn-lg">
+    </div>
+	<br>
+</form>
+<br>
+<form action="{{ url_for('upload_file',user_id = login_session['user_id'])}}" method="get">
+	<div class="center">
+        <input type="submit" value="Back" class="btn btn-default btn-lg">
+    </div>
+	<br>
+</form>
+
+<br>
+
+{% else %}
+
+
+<form action="/login" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Login</h1>
+			</div>
+			<div class = 'flash'>
+                    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+
+                  <div>
+                  {% for message in messages %}
+                      <p> <strong> {{ message }} </strong> </p>
+                  {% endfor %}
+                  </div>
+                  {% endif %}
+              {% endwith %}
+            </div>
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="username" name="username">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="password" name="password">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+                <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block" >
+                <a href='{{url_for('showSignup')}}' >New? Sign up here</a>
+				<br>
+				<a href='{{url_for('taAccess')}}' >TA? Click here</a>
+			    <br>
+			</div>
+		</div>
+	</div>
+</form>
+
+{% endif %}
+{% endblock %}
+</body>
+</html>

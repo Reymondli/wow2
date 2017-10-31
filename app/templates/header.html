@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .center {
+            margin: auto;
+            width: 70%;
+            padding: 8px;
+        }
+
+         input[type="file"] {
+            display: none;
+         }
+
+         .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+         }
+    </style>
+    <title>
+        ECE1779 Assignment One
+    </title>
+</head>
+<body>
+    <div class="jumbotron text-center">
+    <form action="/logout" method="get">
+        <div class="center">
+            <input type="submit" value="Logout" class="btn btn-warning btn-lg">
+        </div>
+        <br>
+    </form>
+    <hr>
+    {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

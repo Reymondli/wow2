@@ -1,0 +1,24 @@
+{% extends "header.html" %}
+{% block content %}
+<form action="{{ url_for('upload_file',user_id = user.id)}}" method="post">
+	<div class="center">
+        <input type="submit" value="Back" class="btn btn-default btn-lg">
+    </div>
+	<br>
+</form>
+
+{% for i in items %}
+<h2>Original Image:</h2>
+<img src="{{ i.origin }}" alt="Original">
+<hr>
+<h2>Grey Scaled Image:</h2>
+<img src="{{ i.trans_one }}" alt="Gray Scale">
+<hr>
+<h2>Horrizontally Mirrored Image:</h2>
+<img src="{{ i.trans_two }}" alt="Mirror">
+<hr>
+<h2>Color Enhanced Image:</h2>
+<img src="{{ i.trans_three }}" alt="Color Enhanced">
+<hr>
+{% endfor %}
+{% endblock %}

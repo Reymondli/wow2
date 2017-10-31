@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+
+{% if login_session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
+<form action="/ta" method="POST" enctype=multipart/form-data id="upload">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Sign Up</h1>
+			</div>
+            <div class = 'flash'>
+                    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+
+                  <div>
+                  {% for message in messages %}
+                      <p> <strong> {{ message }} </strong> </p>
+                  {% endfor %}
+                  </div>
+                  {% endif %}
+              {% endwith %}
+            </div>
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="username" name="username">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="password" name="password">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+			    <br>
+			</div>
+		</div>
+	</div>
+    <div class="upload">
+		<div class="upload-screen">
+            <div class="app-title">
+                <h1>Upload</h1>
+            </div>
+          <p>
+            <input type=file name=file>
+            <br>
+            <input type="submit" value="Sign Up and Upload" class="btn btn-primary btn-large btn-block" >
+            <br>
+            <input type="reset" value="Reset" class="btn btn-primary btn-large btn-block" >
+            <br>
+              <a href="{{url_for('home')}}" class="center">Back to Home Page</a>
+          </p>
+        </div>
+    </div>
+</form>
+{% endif %}
+</html>

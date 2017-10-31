@@ -1,0 +1,13 @@
+{% extends "header.html" %}
+{% block content %}
+<div>
+    <h1> Are you sure you want to delete {{item.name}}? </h1>
+</div>
+
+<form action="{{ url_for('photo_delete',user_id = item.user_id, photo_id=item.id)}}" method="post" id="delete"></form>
+<form action="{{url_for('upload_file', user_id=user_id)}}" method="post" id="cancel"></form>
+<div class="btn-group">
+    <button type="submit" form="cancel" value="Submit" class="btn btn-default btn-lg">Cancel</button>
+    <button type="submit" form="delete" value="Submit" class="btn btn-danger btn-lg">Delete</button>
+</div>
+{% endblock %}
